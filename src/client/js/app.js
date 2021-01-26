@@ -1,6 +1,7 @@
 // Create a new date instance dynamically with JS
-
-document.getElementById('generate').addEventListener('click', performQuery);
+window.onload = () => {
+    document.getElementById('generate').addEventListener('click', performQuery);
+};
 /* Global Variables */
 let image = document.getElementById('pixabay');
 let lat = document.getElementById('lat');
@@ -114,4 +115,4 @@ const postData = async (url = '', data = {}) => {
     }
 };
 
-export {performQuery}
+export {performQuery, updateUI, clearUI, postData}

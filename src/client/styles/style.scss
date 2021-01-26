@@ -6,7 +6,6 @@ body {
 }
 
 
-
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   display: block;
@@ -17,13 +16,16 @@ label {
 input {
   display: block;
   height: 60px;
-  width: 320px;
+  width: 100%;
   background: #5f5c5c;
   color: #070707;
   font-size: 20px;
   font-family: 'Oswald', sans-serif;
   border-radius: 5px;
   border: 1px solid #bbb8b8;
+  padding: 0.1em;
+  box-sizing: border-box;
+
 }
 
 input:hover {
@@ -33,7 +35,7 @@ input:hover {
 button {
   margin-top: 10px;
   display: block;
-  max-width: 500px;
+  width: 100%;
   height: 50px;
   background-color: #14b1d9;
   color: white;
@@ -41,6 +43,8 @@ button {
   font-family: 'Oswald', sans-serif;
   border: none;
   box-shadow: 2px 4px 5px #444;
+  padding: 0.1em;
+  box-sizing: border-box;
 
 }
 
@@ -92,6 +96,7 @@ button:focus {
   font-family: 'Oswald', sans-serif;
 
 }
+
 #app {
 
 }
@@ -139,17 +144,17 @@ button:focus {
 
 }
 
-.headline {
 
-}
 
 .header {
   grid-area: hd;
   background-size: contain;
   background-repeat: no-repeat;
   background-color: grey;
+  text-align: center;
 
 }
+
 .footer {
   grid-area: ft;
   background-color: dimgray;
@@ -181,6 +186,7 @@ button:focus {
 
 
 }
+
 .content {
   grid-area: main;
   height: calc(100% - 300px);
@@ -198,7 +204,7 @@ button:focus {
     "ft";
   grid-auto-rows: minmax(100px, auto);
   grid-gap: 10px;
-  background: #f0f0f0;
+  background: #cbc4c4;
 
 
 }
@@ -214,7 +220,7 @@ button:focus {
             "hd hd hd hd hd hd hd hd"
             "main main main main main main main main"
             "ft ft ft ft ft ft ft ft";
-    background-color: #14b1d9;
+    background: #cbc4c4;
 
   }
 
@@ -232,7 +238,7 @@ button:focus {
             "hd hd hd hd hd hd hd hd"
             "main main main main main main main main"
             "ft ft ft ft ft ft ft ft";
-    background-color: black;
+    background: #cbc4c4;
 
   }
 }

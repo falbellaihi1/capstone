@@ -1,4 +1,4 @@
-import { performQuery } from './js/app';
+import { performQuery,updateUI, clearUI, postData} from './js/app';
 import './styles/style.scss';
 
 
