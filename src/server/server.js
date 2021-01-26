@@ -10,10 +10,7 @@ const userName = `falbellaihi`;
 const PIZABAY_API_URI = "https://pixabay.com/api/?key=";
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
-let cityTo = "";
-let cityFrom = "";
-let currentDate = new Date();
-let tripDate = new Date();
+
 let projectData = {};
 
 /* EXPRESS */
@@ -56,6 +53,10 @@ app.get('/all', function (req, res) {
 app.post('/add', addCityData);
 
 function addCityData(request, response) {
+    let cityTo = "";
+    let cityFrom = "";
+    let currentDate = new Date();
+    let tripDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
     cityFrom = request.body.city_from;
     cityTo = request.body.city_to;
@@ -69,8 +70,6 @@ function addCityData(request, response) {
     console.log(cityTo);
 
     getData(GEO_API_URI + cityQuery).then(function (result) {
-
-        console.log(result.geonames[0]);
         try {
             projectData["results"] = result.geonames[0];
             projectData["cityFrom"] = cityFrom;
@@ -83,7 +82,7 @@ function addCityData(request, response) {
     }).then(
         (async function f() {
             console.log("next")
-            if (projectData.results !==  undefined) {
+            if (projectData.results !== undefined) {
                 let queryUrl = `daily?lat=${projectData.results.lat}&lon=${projectData.results.lng}&key=${WEATHER_API_KEY}`
                 getData(WEATER_API_URI + queryUrl).then(function (a) {
                     for (let i = 0; i < a.data.length; i++) {
@@ -100,7 +99,7 @@ function addCityData(request, response) {
 
         })
     ).then(async function image() {
-        if(projectData.results !==undefined) {
+        if (projectData.results !== undefined) {
             cityName = projectData["results"].name;
             console.log(cityName);
             cityName = cityName.replace(/\s/g, "+")
@@ -116,13 +115,11 @@ function addCityData(request, response) {
                 response.send(projectData);
 
             })
-        }
-        else{
+        } else {
             response.send(projectData);
         }
 
     });
-
 
 
 }

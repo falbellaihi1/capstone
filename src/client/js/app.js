@@ -1,14 +1,12 @@
-/* Global Variables */
-let defualtCountry = 'US';
-let lang = '&lang=ar';
-let baseURL = `http://api.geonames.org/`;
-const userName = `falbellaihi`;
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
-const hostUrl = window.location.href;
 
 document.getElementById('generate').addEventListener('click', performQuery);
+/* Global Variables */
+let image = document.getElementById('pixabay');
+let lat = document.getElementById('lat');
+let long = document.getElementById('long');
+let country = document.getElementById('countnry');
+let weatherInfo = document.getElementById('weather-info');
 
 
 /*
@@ -17,6 +15,7 @@ document.getElementById('generate').addEventListener('click', performQuery);
 function performQuery(e) {
 
     try {
+
 
         const cityFrom = document.getElementById('from-city').value;
         const cityTo = document.getElementById('to-city').value;
@@ -27,63 +26,65 @@ function performQuery(e) {
 
         } else {
             warn.innerText = "";
-            console.log("sdldskldsklfdskjl")
             postData(`http://localhost:8081/add`, {
                 "city_from": cityFrom,
                 "city_to": cityTo,
                 "trip_date": date
-            })
+            });
         }
 
-    } catch (e) {
-        console.log("error", e);
-    }
-}
-
-/*
-    Fetches data from open weather map API takes URI + api key
- */
-const getWeather = async (baseURL, queryURL) => {
-
-    const res = await fetch(baseURL + queryURL)
-    try {
-        return await res.json();
     } catch (error) {
         console.log("error", error);
-        // appropriately handle the error
     }
 }
+
+
 /*
  Update UI with the new data
  */
 const updateUI = async () => {
-    console.log("this is update")
+    clearUI(
+        [lat.id, image.id, long.id, country.id, weatherInfo.id]
+    )
+    image.hidden =true;
     const request = await fetch(`http://localhost:8081/all`)
     try {
         const data = await request.json()
-
-
-        let image = document.getElementById('pixabay');
 
 
         if (data.results !== undefined && data.weatherData !== undefined && data.pixabay !== undefined) {
             document.getElementById('no-res').innerHTML = ``;
             console.log("defined res")
             image.src = data.pixabay
+            image.hidden =false;
             image.style.height = "150px"
             image.style.width = "150px"
-            document.getElementById('lat').innerHTML = `Latitude : ${data.results.lat}`
-            document.getElementById('long').innerHTML = `Longitude : ${data.results.lng}`;
-            document.getElementById('countnry').innerHTML = `Going to ${data.results.name},  ${data.results.countryName}  Going from : ${data.cityFrom} Remining days to go : ${data.reminingDate}`;
-            document.getElementById('weather-info').innerHTML = `Weather will be:${data.weatherData.temp}`;
+            lat.innerHTML = `Latitude : ${data.results.lat}`
+            long.innerHTML = `Longitude : ${data.results.lng}`;
+            country.innerHTML = `Going to ${data.results.name},  ${data.results.countryName}  Going from : ${data.cityFrom} Remining days to go : ${data.reminingDate}`;
+            weatherInfo.innerHTML = `Weather will be:${data.weatherData.temp}`;
         } else {
+
             document.getElementById('no-res').innerHTML = `no results found!`;
+
 
         }
 
 
     } catch (e) {
         console.log(e);
+
+    }
+
+}
+
+function clearUI(id) {
+    for (let i = 0; i <= id.length; i++) {
+
+        if (document.getElementById(`${id[i]}`) != null) {
+            document.getElementById(`${id[i]}`).innerHTML = "";
+
+        }
 
     }
 
@@ -102,8 +103,12 @@ const postData = async (url = '', data = {}) => {
     });
 
     try {
-        await response.json();
-        updateUI()
+        await response.json().catch(function (reason) {
+
+        }).then(function () {
+            updateUI();
+        });
+
     } catch (error) {
         console.log("error", error);
     }

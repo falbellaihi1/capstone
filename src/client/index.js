@@ -1,5 +1,5 @@
 import { performQuery } from './js/app';
-import {stylesheet } from './styles/style.scss';
+import './styles/style.scss';
 
 
 

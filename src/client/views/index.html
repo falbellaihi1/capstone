@@ -5,47 +5,53 @@
     <title>Travel App</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-<div id="app">
-    <div class="holder headline">
-        Capstone Travel
-    </div>
-    <div class="holder trip">
-        <label for="from-city">From </label>
-        <input type="text" id="from-city" placeholder="Going from ....">
-        <label for="to-city">To </label>
-        <input type="text" id="to-city" placeholder="Going to ....">
-        <label for="trip-date">Traveling on:</label>
-        <input type="date" id="trip-date" >
-        <div class="warn-container">
-            <span class="warning" id="required"></span>
+
+<div class="container">
+
+    <header class="holder header">
+        Capstone Travel application
+    </header>
+
+    <div class="content">
+        <div class="holder trip">
+            <label for="from-city">From </label>
+            <input type="text" id="from-city"
+                   placeholder="Going from ....">
+            <label for="to-city">To </label>
+            <input type="text" id="to-city" placeholder="Going to ....">
+            <label for="trip-date">Traveling on:</label>
+            <input type="date" id="trip-date">
+            <div class="warn-container">
+                <span class="warning" id="required"></span>
+            </div>
+            <button id="generate" type="submit"> Generate</button>
         </div>
-        <button id="generate" type="submit"> Generate</button>
-    </div>
-<!--    <div class="holder info">-->
-<!--        <label for="information">How are you feeling today?</label>-->
-<!--        <textarea class="myInput" id="information"-->
-<!--                  placeholder="City information" rows="9"-->
-<!--                  cols="50"></textarea>-->
-<!--        <button id="generate" type="submit"> Generate</button>-->
-<!--    </div>-->
-    <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="no-res"></div>
-        <div id="entryHolder">
-            <img id="pixabay"></img>
-            <div id="lat"></div>
-            <div id="long"></div>
-            <div id="countnry"></div>
-            <div id="weather-info"></div>
+        <!--    <div class="holder info">-->
+        <!--        <label for="information">How are you feeling today?</label>-->
+        <!--        <textarea class="myInput" id="information"-->
+        <!--                  placeholder="City information" rows="9"-->
+        <!--                  cols="50"></textarea>-->
+        <!--        <button id="generate" type="submit"> Generate</button>-->
+        <!--    </div>-->
+        <div class="holder entry" id="result-area">
+            <div class="title">Most Recent Entry</div>
+            <div id="no-res"></div>
+            <div id="entryHolder">
+                <img id="pixabay"></img>
+                <div id="lat"></div>
+                <div id="long"></div>
+                <div id="countnry"></div>
+                <div id="weather-info"></div>
+            </div>
         </div>
     </div>
+    <footer class="holder footer">
+        this is a footer
+    </footer>
 </div>
-<footer>
-    this is a footer
-</footer>
+
 
 <script>
     // Check that service workers are supported
